@@ -2,7 +2,7 @@ import { Github } from 'lucide-react';
 
 function Header({ language, onToggleLanguage }) {
   const redirectToGithub = () => {
-    window.open('https://github.com/DarkRai087/Onlinejs', '_blank');
+    window.open('https://github.com/DarkRai087/Onlinecode', '_blank');
   };
 
   return (
