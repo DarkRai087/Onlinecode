@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+/* Custom Animations */
+@keyframes fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-down {
+  animation: fade-in-down 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes gradient-move {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.animate-gradient-move {
+  background-size: 200% 200%;
+  animation: gradient-move 3s ease-in-out infinite;
+}
+
+@keyframes bounce-once {
+  0%, 100% { transform: translateY(0); }
+  20% { transform: translateY(-8px); }
+  40% { transform: translateY(0); }
+}
+.animate-bounce-once {
+  animation: bounce-once 0.7s 1;
+}
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+@keyframes glow-output {
+  0% {
+    box-shadow: 0 0 8px 0 #7f5af0, 0 0 0px 0 #ff6ac1;
+    border-color: #7f5af0;
+  }
+  50% {
+    box-shadow: 0 0 24px 4px #ff6ac1, 0 0 12px 2px #7f5af0;
+    border-color: #ff6ac1;
+  }
+  100% {
+    box-shadow: 0 0 8px 0 #7f5af0, 0 0 0px 0 #ff6ac1;
+    border-color: #7f5af0;
+  }
+}
+.animate-glow-output {
+  animation: glow-output 2.5s ease-in-out infinite;
+}
