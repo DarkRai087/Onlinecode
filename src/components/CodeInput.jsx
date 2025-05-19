@@ -112,24 +112,13 @@ function CodeInput({ language, code, setCode, setOutput, onToggleLanguage }) {
               {language === "javascript" ? "Script.js" : "script.py"}
             </span>
           </span>
-          <button
-            onClick={onToggleLanguage}
-            className="ml-4 flex items-center gap-2 bg-gray-800/80 hover:bg-gray-700 py-1 px-3 rounded-full transition-all duration-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 animate-bounce-once"
-          >
-            {language === "javascript" ? (
-              <>
-                <span className="text-yellow-300 font-bold">JS</span>
-                <ToggleLeft size={18} />
-                <span className="text-gray-400">Python</span>
-              </>
-            ) : (
-              <>
-                <span className="text-gray-400">JS</span>
-                <ToggleRight size={18} />
-                <span className="text-blue-300 font-bold">Python</span>
-              </>
-            )}
-          </button>
+        <select value={language}
+        onChange={e=>onToggleLanguage(e.target.value)}
+        className="ml-4 bg-gray-800/80 text-white font-bold py-1 px-3 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
+>
+<option value="javascript">javascript</option>
+<option value="python">Python</option>
+</select>
         </div>
         <div className="flex gap-2">
           <button

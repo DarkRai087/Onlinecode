@@ -11,16 +11,16 @@ export default function JSCompiler() {
   const [code, setCode] = useState(JS_BOILERPLATE);
   const [output, setOutput] = useState("");
 
-  const toggleLanguage = () => {
-    if (language === "javascript") {
-      setLanguage("python");
-      setCode(PYTHON_BOILERPLATE);
-    } else {
-      setLanguage("javascript");
-      setCode(JS_BOILERPLATE);
-    }
-    setOutput("");
-  };
+  const toggleLanguage = (newLang) => {
+  if (newLang === "python") {
+    setLanguage("python");
+    setCode(PYTHON_BOILERPLATE);
+  } else {
+    setLanguage("javascript");
+    setCode(JS_BOILERPLATE);
+  }
+  setOutput("");
+};
 
   return (
     <div className="flex flex-col h-screen bg-gray-900 text-gray-200">
