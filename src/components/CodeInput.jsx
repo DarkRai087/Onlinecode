@@ -4,15 +4,33 @@ import { javascript } from '@codemirror/lang-javascript';
 import { python } from '@codemirror/lang-python';
 import { dracula } from '@uiw/codemirror-theme-dracula';
 import { autocompletion } from '@codemirror/autocomplete';
+import { cpp } from '@codemirror/lang-cpp'; // C++
 
-const JS_BOILERPLATE = "// Online Javascript Editor for free\n// Write, Edit and Run your Javascript code using JS Online Compiler\nconsole.log(\"Hello world\");";
-const PYTHON_BOILERPLATE = "#Online Python Editor for free\n#Write, Edit and Run your Python code using Py Compiler Compiler\nprint(\"Welcome To python\")";
+export const JS_BOILERPLATE = "// Online Javascript Editor for free\n// Write, Edit and Run your Javascript code using JS Online Compiler\nconsole.log(\"Hello world\");";
+export const PYTHON_BOILERPLATE = "#Online Python Editor for free\n#Write, Edit and Run your Python code using Py Compiler Compiler\nprint(\"Welcome To python\")";
+export const C_BOILERPLATE = `#include <stdio.h>
+
+int main() {
+    printf("Hello, World!");
+    return 0;
+}`;
+export const CPP_BOILERPLATE = `#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}`;
+
+
 function CodeInput({ language, code, setCode, setOutput, onToggleLanguage }) {
   const getLanguageExtensions = () => {
     if (language === "javascript") {
       return [javascript({ jsx: true }), autocompletion()];
-    } else {
+    } else if(language=== 'python') {
       return [python(), autocompletion()];
+    }else if (language === "c" || language === "cpp") {
+      return [cpp(), autocompletion()];
     }
   };
 
@@ -34,7 +52,7 @@ function CodeInput({ language, code, setCode, setOutput, onToggleLanguage }) {
         console.log = originalConsoleLog;
 
         setOutput(outputString);
-      } else {
+      } else if (language === "python") {
         setOutput(
           "[Python Execution Simulated]\n" +
             code
@@ -64,6 +82,8 @@ function CodeInput({ language, code, setCode, setOutput, onToggleLanguage }) {
               })
               .join("\n")
         );
+      } else {
+        setOutput(`[${language.toUpperCase()} Execution Simulated]\n${code}`);
       }
     } catch (error) {
       setOutput('Error: ' + error.message);
@@ -71,7 +91,15 @@ function CodeInput({ language, code, setCode, setOutput, onToggleLanguage }) {
   };
 
   const clearCode = () => {
-    setCode(language === "javascript" ? JS_BOILERPLATE : PYTHON_BOILERPLATE);
+    if (language === "javascript") {
+      setCode(JS_BOILERPLATE);
+    } else if (language === "python") {
+      setCode(PYTHON_BOILERPLATE);
+    } else if (language === "c") {
+      setCode(C_BOILERPLATE);
+    } else if (language === "cpp") {
+      setCode(CPP_BOILERPLATE);
+    }
     setOutput('');
   };
 
@@ -118,6 +146,8 @@ function CodeInput({ language, code, setCode, setOutput, onToggleLanguage }) {
 >
 <option value="javascript">javascript</option>
 <option value="python">Python</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
 </select>
         </div>
         <div className="flex gap-2">
